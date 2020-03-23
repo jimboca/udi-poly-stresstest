@@ -3,4 +3,7 @@
     <editor id="bool">
         <range uom="2" subset="0,1" />
     </editor>
+    <editor id="cnt">
+        <range uom="107" subset="0-1025"/>
+    </editor>
 </editors>

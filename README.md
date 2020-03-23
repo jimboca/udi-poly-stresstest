@@ -2,13 +2,12 @@
 
 #### Installation
 
-Here is how you install this poly.
+Don't do it
 
 #### Requirements
 
-Here is what is required to run this poly.
+Everything or Nothing
 
-## Using this Template
+## Using this Stress Test
 
-To use this template as the start of your nodeserver, just hit the + in the upper
-right corner of github select Import Repository and give the path to this repo as the source.
+Use at your own risk

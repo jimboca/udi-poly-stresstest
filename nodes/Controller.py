@@ -1,0 +1,116 @@
+
+try:
+    import polyinterface
+except ImportError:
+    import pgc_interface as polyinterface
+
+from nodes import STNode1
+
+LOGGER = polyinterface.LOGGER
+
+class Controller(polyinterface.Controller):
+    def __init__(self, polyglot):
+        super(Controller, self).__init__(polyglot)
+        self.name = 'Stress Test Controller'
+        self.driver = {}
+        self._inShortPoll = None # None until shortpoll actually runs
+        #self.poly.onConfig(self.process_config)
+
+    def start(self):
+        # This grabs the server.json data and checks profile_version is up to date
+        serverdata = self.poly.get_server_data()
+        LOGGER.info('Started Stress Test NodeServer {}'.format(serverdata['version']))
+        self.heartbeat(0)
+        self.check_params()
+        self.discover()
+        #self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
+
+    def setDriver(self,driver,value):
+        self.driver[driver] = value
+        super(Controller, self).setDriver(driver,value)
+
+    def getDriver(self,driver):
+        if driver in self.driver:
+            return self.driver[driver]
+        else:
+            return super(Controller, self).getDriver(driver)
+
+    def shortPoll(self):
+        LOGGER.debug('Controller:shortPoll')
+        if self._inShortPoll is True:
+            LOGGER.error('Controller:shortPoll: can not run {}'.format(self._inShortPoll))
+            return
+        self._inShortPoll = True
+        for node in self.nodes:
+            if self.nodes[node].address != self.address:
+                self.nodes[node].shortPoll()
+        self._inShortPoll = False
+
+    def longPoll(self):
+        LOGGER.debug('Controller:longPoll')
+        self.heartbeat()
+
+    def query(self,command=None):
+        LOGGER.debug('Controller:query')
+        self.check_params()
+        for node in self.nodes:
+            self.nodes[node].reportDrivers()
+
+    def discover(self, *args, **kwargs):
+        cnt = int(self.getDriver('GV0'))
+        for i in range(cnt):
+            fi = '%04d' % (i + 1)
+            self.addNode(STNode1(self, self.address, 'st_{}'.format(fi), 'ST Node {}'.format(fi)))
+
+    def delete(self):
+        LOGGER.info('Oh God I\'m being deleted. Nooooooooooooooooooooooooooooooooooooooooo.')
+
+    def stop(self):
+        LOGGER.debug('NodeServer stopped.')
+
+    def process_config(self, config):
+        # this seems to get called twice for every change, why?
+        # What does config represent?
+        LOGGER.info("process_config: Enter config={}".format(config));
+        LOGGER.info("process_config: Exit");
+
+    def heartbeat(self,init=False):
+        LOGGER.debug('heartbeat: init={}'.format(init))
+        if init is not False:
+            self.hb = init
+        LOGGER.debug('heartbeat: hb={}'.format(self.hb))
+        if self.hb == 0:
+            self.reportCmd("DON",2)
+            self.hb = 1
+        else:
+            self.reportCmd("DOF",2)
+            self.hb = 0
+
+    def check_params(self):
+        """
+        This is an example if using custom Params for user and password and an example with a Dictionary
+        """
+        self.removeNoticesAll()
+
+    def update_profile(self,command):
+        LOGGER.info('update_profile:')
+        st = self.poly.installprofile()
+        return st
+
+    def cmd_set_cnt(self,command):
+        val = int(command.get('value'))
+        LOGGER.info('cmd_set_cnt: {}'.format(val))
+        self.setDriver('GV0',val)
+        self.discover()
+
+    id = 'controller'
+    commands = {
+        'QUERY': query,
+        'DISCOVER': discover,
+        'UPDATE_PROFILE': update_profile,
+        'SET_CNT': cmd_set_cnt,
+    }
+    drivers = [
+      {'driver': 'ST', 'value': 1, 'uom': 2},
+      {'driver': 'GV0', 'value': 10, 'uom': 107},
+    ]

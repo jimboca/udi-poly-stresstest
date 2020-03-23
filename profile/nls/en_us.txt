@@ -1,12 +1,14 @@
 # controller
-ND-controller-NAME = Template NodeServer Controller
+ND-controller-NAME = Stress Test NodeServer Controller
 CMD-ctl-QUERY"-NAME = Query
-CMD-ctl-DISCOVER-NAME = Re-Discover
+CMD-ctl-DISCOVER-NAME = Discover
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
-CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove All Notices
-CMD-ctl-REMOVE_NOTICE_TEST-NAME = Remove Notice Test
 ST-ctl-ST-NAME = NodeServer Online
+ST-ctl-GV0-NAME = Number of Nodes
+CMD-SET_CNT-NAME = Set Number of Nodes
 
-# mynodetype
-ND-tmplnode-NAME = Template Node
-ST-tmplnode-ST-NAME = Node Status
+# Stress Test Node
+ND-stnode1-NAME = Stress Test Node One
+ST-stnode-ST-NAME = Status
+ST-stnode-GV0-NAME = Generic Zero
+ST-stnode-GV1-NAME = Generic One
