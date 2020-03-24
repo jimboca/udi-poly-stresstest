@@ -9,7 +9,9 @@
     "notice": "May Kill You",
     "shortPoll": "15",
     "longPoll": "240",
-    "testMode": false,
+    "testMode": true,
+    "cloud": true,
+    "prem": true,
     "profile_version": "1.0.0",
     "credits": [
         {
