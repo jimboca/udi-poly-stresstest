@@ -24,6 +24,8 @@ class Controller(polyinterface.Controller):
         self.check_params()
         if self.getDriver('GV0') is None:
             self.setDriver('GV0',100)
+        if self.getDriver('GV1') is None:
+            self.setDriver('GV1',0)
         self.discover()
         #self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
 
@@ -106,14 +108,21 @@ class Controller(polyinterface.Controller):
         self.setDriver('GV0',val)
         self.discover()
 
+    def cmd_set_sp(self,command):
+        val = int(command.get('value'))
+        LOGGER.info('cmd_set_cnt: {}'.format(val))
+        self.setDriver('GV1',val)
+
     id = 'controller'
     commands = {
         'QUERY': query,
         'DISCOVER': discover,
         'UPDATE_PROFILE': update_profile,
         'SET_CNT': cmd_set_cnt,
+        'SET_SP': cmd_set_sp,
     }
     drivers = [
       {'driver': 'ST', 'value': 1, 'uom': 2},
-      {'driver': 'GV0', 'value': 100, 'uom': 107},
+      {'driver': 'GV0', 'value': 25 'uom': 107},
+      {'driver': 'GV1', 'value': 0, 'uom': 2},
     ]
