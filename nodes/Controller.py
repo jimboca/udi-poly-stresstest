@@ -37,10 +37,13 @@ class Controller(polyinterface.Controller):
         if driver in self.driver:
             return self.driver[driver]
         else:
-            return super(Controller, self).getDriver(driver)
+            # WARNING: This only works on local, will not work on PGC
+            return next((driver["value"] for driver in self.drivers if driver["driver"] == dv), None)
+
 
     def shortPoll(self):
-        return
+        if int(self.getDriver('GV1')) == 0:
+            return
         LOGGER.debug('Controller:shortPoll')
         if self._inShortPoll is True:
             LOGGER.error('Controller:shortPoll: can not run {}'.format(self._inShortPoll))
