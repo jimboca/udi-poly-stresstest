@@ -18,8 +18,8 @@ class Controller(polyinterface.Controller):
 
     def start(self):
         # This grabs the server.json data and checks profile_version is up to date
-        serverdata = self.poly.get_server_data()
-        LOGGER.info('Started Stress Test NodeServer {}'.format(serverdata['version']))
+        #serverdata = self.poly.get_server_data()
+        #LOGGER.info('Started Stress Test NodeServer {}'.format(serverdata['version']))
         self.heartbeat(0)
         self.check_params()
         if self.getDriver('GV0') is None:
@@ -37,8 +37,9 @@ class Controller(polyinterface.Controller):
         if driver in self.driver:
             return self.driver[driver]
         else:
+            return None
             # WARNING: This only works on local, will not work on PGC
-            return next((dv["value"] for dv in self.drivers if dv["driver"] == driver), None)
+            #return next((dv["value"] for dv in self.drivers if dv["driver"] == driver), None)
 
 
     def shortPoll(self):
