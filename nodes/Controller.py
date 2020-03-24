@@ -38,7 +38,7 @@ class Controller(polyinterface.Controller):
             return self.driver[driver]
         else:
             # WARNING: This only works on local, will not work on PGC
-            return next((dv["value"] for dv in self.drivers if driver["driver"] == driver), None)
+            return next((dv["value"] for dv in self.drivers if dv["driver"] == driver), None)
 
 
     def shortPoll(self):
