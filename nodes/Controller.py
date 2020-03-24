@@ -112,5 +112,5 @@ class Controller(polyinterface.Controller):
     }
     drivers = [
       {'driver': 'ST', 'value': 1, 'uom': 2},
-      {'driver': 'GV0', 'value': 10, 'uom': 107},
+      {'driver': 'GV0', 'value': 100, 'uom': 107},
     ]
