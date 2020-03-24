@@ -23,7 +23,7 @@ class Controller(polyinterface.Controller):
         self.heartbeat(0)
         self.check_params()
         if self.getDriver('GV0') is None:
-            self.setDriver('GV0',100)
+            self.setDriver('GV0',30)
         if self.getDriver('GV1') is None:
             self.setDriver('GV1',0)
         self.discover()
