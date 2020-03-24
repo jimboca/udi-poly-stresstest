@@ -38,6 +38,7 @@ class Controller(polyinterface.Controller):
             return super(Controller, self).getDriver(driver)
 
     def shortPoll(self):
+        return
         LOGGER.debug('Controller:shortPoll')
         if self._inShortPoll is True:
             LOGGER.error('Controller:shortPoll: can not run {}'.format(self._inShortPoll))
