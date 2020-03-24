@@ -64,7 +64,7 @@ class Controller(polyinterface.Controller):
         for node in self.nodes:
             if self.nodes[node].address != self.address:
                 self.nodes[node].query()
-        self..reportDrivers()
+        self.reportDrivers()
 
     def discover(self, *args, **kwargs):
         cnt = int(self.getDriver('GV0'))
