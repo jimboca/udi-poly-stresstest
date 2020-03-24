@@ -22,6 +22,8 @@ class Controller(polyinterface.Controller):
         LOGGER.info('Started Stress Test NodeServer {}'.format(serverdata['version']))
         self.heartbeat(0)
         self.check_params()
+        if self.getDriver('GV0') is None:
+            self.setDriver('GV0',100)
         self.discover()
         #self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
 
