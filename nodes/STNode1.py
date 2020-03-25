@@ -33,9 +33,9 @@ class STNode1(polyinterface.Node):
             self.setOn(None)
         else:
             self.setOff(None)
-        self.update()
+        self.update_time()
 
-    def update(self):
+    def update_time(self):
         setlf.setDriver('GV0',int(time.time()))
 
     def longPoll(self):
@@ -51,6 +51,7 @@ class STNode1(polyinterface.Node):
 
     def query(self,command=None):
         LOGGER.debug('{}:query'.format(self.address))
+        self.update_time()
         self.reportDrivers()
 
     "Hints See: https://github.com/UniversalDevicesInc/hints"
