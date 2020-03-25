@@ -12,12 +12,12 @@
     "testMode": true,
     "cloud": true,
     "prem": true,
-    "profile_version": "1.0.2",
+    "profile_version": "1.0.3",
     "credits": [
         {
             "title": "stresstest: A NodeServer for Stress Testing Polyglot",
             "author": "JimBoCA",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "date": "March 23, 2020",
             "source": "https://github.com/JimBoCA/udi-poly-stresstest",
             "license": "https://raw.githubusercontent.com/JimBoCA/udi-poly-stresstest/master/LICENSE"
