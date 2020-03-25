@@ -36,7 +36,7 @@ class STNode1(polyinterface.Node):
         self.update_time()
 
     def update_time(self):
-        setlf.setDriver('GV0',int(time.time()))
+        self.setDriver('GV0',int(time.time()))
 
     def longPoll(self):
         LOGGER.debug('{}:longPoll'.format(self.address))
