@@ -6,4 +6,7 @@
     <editor id="cnt">
         <range uom="107" subset="0-1025"/>
     </editor>
+    <editor id="time">
+        <range uom="110"/>
+    </editor>
 </editors>

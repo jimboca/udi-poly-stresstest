@@ -1,4 +1,6 @@
 
+import time
+
 try:
     import polyinterface
 except ImportError:
@@ -31,18 +33,20 @@ class STNode1(polyinterface.Node):
             self.setOn(None)
         else:
             self.setOff(None)
+        self.update()
+
+    def update(self):
+        setlf.setDriver('GV0',int(time.time()))
 
     def longPoll(self):
         LOGGER.debug('{}:longPoll'.format(self.address))
 
     def setOn(self, command):
         self.setDriver('ST', 1)
-        self.setDriver('GV0', 1)
         self.setDriver('GV1', 1)
 
     def setOff(self, command):
         self.setDriver('ST', 0)
-        self.setDriver('GV0', 0)
         self.setDriver('GV1', 0)
 
     def query(self,command=None):
@@ -53,7 +57,7 @@ class STNode1(polyinterface.Node):
     hint = [1,2,3,4]
     drivers = [
         {'driver': 'ST', 'value': 0, 'uom': 2},
-        {'driver': 'GV0', 'value': 0, 'uom': 2},
+        {'driver': 'GV0', 'value': 0, 'uom': 110},
         {'driver': 'GV1', 'value': 0, 'uom': 2},
     ]
     id = 'stnode1'

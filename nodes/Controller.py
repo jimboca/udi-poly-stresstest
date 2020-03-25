@@ -20,6 +20,7 @@ class Controller(polyinterface.Controller):
         # This grabs the server.json data and checks profile_version is up to date
         #serverdata = self.poly.get_server_data()
         #LOGGER.info('Started Stress Test NodeServer {}'.format(serverdata['version']))
+        self.update_profile(None)
         self.heartbeat(0)
         self.check_params()
         if self.getDriver('GV0') is None:
