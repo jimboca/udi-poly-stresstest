@@ -7,6 +7,6 @@
         <range uom="107" subset="0-1025"/>
     </editor>
     <editor id="time">
-        <range uom="110"/>
+        <range uom="110" min="0" max="2147483647"/>
     </editor>
 </editors>
