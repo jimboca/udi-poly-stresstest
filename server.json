@@ -7,7 +7,7 @@
     "install_cloud": "install_cloud.sh",
     "description": "Stress Test Node Server",
     "notice": "May Kill You",
-    "shortPoll": "15",
+    "shortPoll": "30",
     "longPoll": "240",
     "testMode": true,
     "cloud": true,
