@@ -25,8 +25,10 @@ class Controller(polyinterface.Controller):
         self.check_params()
         if self.getDriver('GV0') is None:
             self.setDriver('GV0',30)
-        if self.getDriver('GV1') is None:
-            self.setDriver('GV1',0)
+        else:
+            self.setDriver('GV0',self.getDriver('GV0'))
+        # Alwyas set back to zero on restarts.
+        self.setDriver('GV1',0)
         self.discover()
         #self.poly.add_custom_config_docs("<b>And this is some custom config data</b>")
 

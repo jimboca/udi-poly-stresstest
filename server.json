@@ -17,7 +17,7 @@
         {
             "title": "stresstest: A NodeServer for Stress Testing Polyglot",
             "author": "JimBoCA",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "date": "March 23, 2020",
             "source": "https://github.com/JimBoCA/udi-poly-stresstest",
             "license": "https://raw.githubusercontent.com/JimBoCA/udi-poly-stresstest/master/LICENSE"
