@@ -39,15 +39,15 @@ class STNode1(polyinterface.Node):
         dv = 'ST'
         val = self.getDriver(dv)
         if val is None:
-            LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
+            LOGGER.error('%s:shortPoll: %s expected %d, got %s',self.address,dv,ckval,val)
         else:
             val=int(val)
             if val != ckval:
                 LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
-        dv = 'Gv1'
+        dv = 'GV1'
         val = self.getDriver(dv)
         if val is None:
-            LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
+            LOGGER.error('%s:shortPoll: %s expected %d, got %s',self.address,dv,ckval,val)
         else:
             val=int(val)
             if val != ckval:
