@@ -28,11 +28,13 @@ class STNode1(polyinterface.Node):
             return super(STNode1, self).getDriver(driver)
 
     def shortPoll(self):
-        LOGGER.debug('{}:shortPoll'.format(self.address))
+        LOGGER.debug('%s:shortPoll: ',self.address)
         if int(self.getDriver('ST')) == 0:
             self.setOn(None)
         else:
             self.setOff(None)
+        LOGGER.debug('%s:shortPoll:  ST=%s',self.address,self.getDriver('ST'))
+        LOGGER.debug('%s:shortPoll: GV1=%s',self.address,self.getDriver('GV1'))
         self.update_time()
 
     def update_time(self):
@@ -42,10 +44,12 @@ class STNode1(polyinterface.Node):
         LOGGER.debug('{}:longPoll'.format(self.address))
 
     def setOn(self, command):
+        LOGGER.debug('%s:setOn: ',self.address)
         self.setDriver('ST', 1)
         self.setDriver('GV1', 1)
 
     def setOff(self, command):
+        LOGGER.debug('%s:setOff: ',self.address)
         self.setDriver('ST', 0)
         self.setDriver('GV1', 0)
 
