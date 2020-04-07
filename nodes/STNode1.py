@@ -29,13 +29,21 @@ class STNode1(polyinterface.Node):
 
     def shortPoll(self):
         LOGGER.debug('%s:shortPoll: ',self.address)
+        self.update_time()
         if int(self.getDriver('ST')) == 0:
             self.setOn(None)
+            ckval = 1
         else:
             self.setOff(None)
-        LOGGER.debug('%s:shortPoll:  ST=%s',self.address,self.getDriver('ST'))
-        LOGGER.debug('%s:shortPoll: GV1=%s',self.address,self.getDriver('GV1'))
-        self.update_time()
+            ckval = 0
+        dv = 'ST'
+        val = int(self.getDriver(dv))
+        if val != ckval:
+            LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
+        dv = 'Gv1'
+        val = int(self.getDriver(dv))
+        if val != ckval:
+            LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
 
     def update_time(self):
         self.setDriver('GV0',int(time.time()))
