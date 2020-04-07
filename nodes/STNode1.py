@@ -30,7 +30,11 @@ class STNode1(polyinterface.Node):
     def shortPoll(self):
         LOGGER.debug('%s:shortPoll: ',self.address)
         self.update_time()
-        if int(self.getDriver('ST')) == 0:
+        stv = self.getDriver('ST')
+        if stv is None:
+            # New node not completly started yet
+            return
+        if int(stv) == 0:
             self.setOn(None)
             ckval = 1
         else:
