@@ -45,7 +45,7 @@ class STNode1(polyinterface.Node):
             if val != ckval:
                 LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
         dv = 'Gv1'
-        val = int(self.getDriver(dv))
+        val = self.getDriver(dv)
         if val is None:
             LOGGER.error('%s:shortPoll: %s expected %d, got %d',self.address,dv,ckval,val)
         else:
